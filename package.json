@@ -1,0 +1,63 @@
+{
+  "name": "@bowlerjs/cli",
+  "description": "Command-line Bowler generator",
+  "version": "0.0.1",
+  "homepage": "https://github.com/bowlerjs/cli",
+  "main": "lib/",
+  "bin": {
+    "bowler": "./bin/bowler.js"
+  },
+  "keywords": [
+    "bowler"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bowlerjs/cli.git"
+  },
+  "author": {
+    "name": "Mikael Pettersson",
+    "email": "contact@bowler.io",
+    "url": "https://bowler.io"
+  },
+  "bugs": {
+    "url": "https://github.com/bowlerjs/cli/issues"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "scripts": {
+    "publish": "git push origin --tags && npm run changelog && git push origin",
+    "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
+    "release:pre": "npm version prerelease && npm publish --tag pre --access public",
+    "release:patch": "npm version patch && npm publish --access public",
+    "release:minor": "npm version minor && npm publish --access public",
+    "release:major": "npm version major && npm publish --access public",
+    "jest": "jest --no-cache",
+    "test": "npm run lint && npm run jest",
+    "lint": "semistandard --fix"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "semistandard": {
+    "sourceType": "module",
+    "env": [
+      "jest"
+    ]
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "commander": "^2.9.0",
+    "generator-bowler": "bowlerjs/generator-bowler#master",
+    "semver": "^5.3.0",
+    "update-notifier": "^2.3.0",
+    "yeoman-environment": "^2.0.0"
+  },
+  "devDependencies": {
+    "jest": "^22.0.4",
+    "lodash": "^4.6.1",
+    "mocha": "^4.0.0",
+    "semistandard": "^12.0.0"
+  }
+}
